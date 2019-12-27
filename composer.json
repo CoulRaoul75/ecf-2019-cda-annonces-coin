@@ -5,6 +5,7 @@
         "php": "^7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "components/jquery": "^3.4",
         "fzaninotto/faker": "^1.9",
         "knplabs/knp-paginator-bundle": "^5.0",
         "sensio/framework-extra-bundle": "^5.5",
@@ -17,7 +18,8 @@
         "symfony/orm-pack": "^1.0",
         "symfony/twig-pack": "^1.0",
         "symfony/webpack-encore-bundle": "^1.7",
-        "symfony/yaml": "5.0.*"
+        "symfony/yaml": "5.0.*",
+        "twitter/bootstrap": "^4.4"
     },
     "require-dev": {
         "symfony/maker-bundle": "^1.14"
