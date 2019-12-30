@@ -1,0 +1,56 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Annonce{% endblock %}
+
+{% block body %}
+
+    <h1 class="btn btn-block justify-content-lg-center btn-lg text-white mt-3 " style="background-color: #0c5460">Peut-être ta future acquisition ?</h1>
+
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Catégorie</th>
+            <td>{{ ad.category.titleCategory }}</td>
+        </tr>
+        <tr>
+            <th>Titre</th>
+            <td>{{ ad.title }}</td>
+        </tr>
+        <tr>
+            <th>Texte de l'annonce</th>
+            <td>{{ ad.text }}</td>
+        </tr>
+        <tr>
+            <th>Publiée le</th>
+            <td>{{ ad.createdAt ? ad.createdAt|date('d-M-Y') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Photo</th>
+            <td>{% if ad.photo is defined %}
+                    <img src="{{ asset('uploads/photos/' ~ ad.photo) }}">
+                {% endif %}</td>
+        </tr>
+        <tr>
+            <th>Prix</th>
+            <td>{{ ad.price }} €</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="container-fluid justify-content-center">
+        <div>
+            <a class="btn btn-success  mx-2" href="#">Je contacte le vendeur</a>
+
+            <a class="btn btn-info  mx-2" href="{{ path('ad-list') }}">Nop... Je continue ma recherche</a>
+
+        </div>
+        <div>
+            <a class="btn btn-secondary mx-2 mt-3" href="{{ path('ad-edit', {'id': ad.id}) }}">Modifier</a>
+
+            {{ include('ad/_delete_form.html.twig') }}
+        </div>
+    </div>
+
+
+{% endblock %}

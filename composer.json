@@ -9,6 +9,7 @@
         "fzaninotto/faker": "^1.9",
         "knplabs/knp-paginator-bundle": "^5.0",
         "sensio/framework-extra-bundle": "^5.5",
+        "symfony/asset": "5.0.*",
         "symfony/console": "5.0.*",
         "symfony/debug-pack": "^1.0",
         "symfony/dotenv": "5.0.*",
@@ -16,12 +17,16 @@
         "symfony/form": "5.0.*",
         "symfony/framework-bundle": "5.0.*",
         "symfony/orm-pack": "^1.0",
+        "symfony/security-csrf": "5.0.*",
         "symfony/twig-pack": "^1.0",
+        "symfony/validator": "5.0.*",
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "5.0.*",
+        "twig/string-extra": "^3.0",
         "twitter/bootstrap": "^4.4"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.3",
         "symfony/maker-bundle": "^1.14"
     },
     "config": {
