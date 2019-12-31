@@ -5,13 +5,13 @@ namespace App\Controller;
 use App\Entity\Ad;
 use App\Entity\Category;
 use App\Entity\Category as CategoryAlias;
+use App\Entity\User;
 use App\Form\AdType;
 use App\Repository\AdRepository;
 use Doctrine\DBAL\Types\TextType;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
@@ -62,7 +62,10 @@ class AdController extends AbstractController
     public function new(Request $request): Response
     {
         $ad = new Ad();
+        $ad->setUser($this->getUser(User::class));
+
         $form = $this->createForm(AdType::class, $ad);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
