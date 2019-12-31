@@ -65,34 +65,38 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Ad", cascade={"persist"})
-     * @var ArrayCollection | Ad []
+     * @ORM\OneToMany(targetEntity="Ad", mappedBy="user")
+     * @var ArrayCollection
      */
     private $ads;
 
-
+    /**
+     * User constructor.
+     * @param ArrayCollection $ads
+     */
     public function __construct()
     {
         $this->ads = new ArrayCollection();
     }
 
     /**
-     * @return mixed
+     * @return ArrayCollection
      */
-    public function getAds()
+    public function getAds(): ArrayCollection
     {
         return $this->ads;
     }
 
     /**
-     * @param mixed $ads
+     * @param ArrayCollection $ads
      * @return User
      */
-    public function setAds($ads)
+    public function setAds(ArrayCollection $ads): User
     {
         $this->ads = $ads;
         return $this;
     }
+
 
 
     public function getId(): ?int

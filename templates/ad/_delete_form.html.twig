@@ -1,5 +1,5 @@
 <form method="post" action="{{ path('ad-delete', {'id': ad.id}) }}" onsubmit="return confirm('C\'est ton dernier mot... enfin clic ?');">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ ad.id) }}">
-    <button class="btn btn-danger mx-2 mt-3">Supprimer</button>
+    <button class="btn btn-outline-danger mx-2 mt-3">Supprimer</button>
 </form>

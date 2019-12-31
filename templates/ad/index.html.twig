@@ -14,21 +14,16 @@
                 <th>Catégorie</th>
                 <th>{{ knp_pagination_sortable(adList, 'Publiée le', 'a.createdAt') }}</th>
                 <th>Prix</th>
-                <th>Actions</th>
             </tr>
 
 
         {% for ad in adList %}
             <tr>
                 <td>{{ ad.title }} </td>
-                <td>{{ ad.text | u.truncate(30) }} ... <a href="{{ path('ad-details', {"id":ad.id}) }}">consulter</a></td>
+                <td>{{ ad.text | u.truncate(100) }} ... <a href="{{ path('ad-details', {"id":ad.id}) }}" class="badge badge-success">consulter</a></td>
                 <td>{{ ad.category.titleCategory }}</td>
                 <td>{{ ad.createdAt ? ad.createdAt|date('d-M-Y') : '' }}</td>
                 <td>{{ ad.price }} €</td>
-                <td>
-                    <a href="{{ path('ad-details', {'id': ad.id}) }}">show</a>
-                    <a href="{{ path('ad-edit', {'id': ad.id}) }}">edit</a>
-                </td>
             </tr>
         {% else %}
             <tr>

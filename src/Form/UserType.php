@@ -21,7 +21,7 @@ class UserType extends AbstractType
             ->add('city', TextType::class, ['label' => 'Ta ville'] )
             ->add('phone', TextType::class, ['label' => 'Ton numéro de téléphone'] )
             ->add('email', TextType::class, ['label' => 'Ton email', 'help' => 'Ce sera aussi ton identifiant pour te connecter'] )
-            ->add('password', TextType::class, ['label' => 'Ton mot de passe'])
+            ->add('password')
 
             ->add('submit', SubmitType::class, ["label" => "Enregistre ton compte", "attr" => ["class" => "btn btn-danger btn-block"] ])
         ;

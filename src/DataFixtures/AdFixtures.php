@@ -20,7 +20,7 @@ class AdFixtures extends Fixture implements DependentFixtureInterface
             $ad ->setTitle($faker->realText($faker->numberBetween(10,20)))
                 ->setText($faker->realText(mt_rand(100, 300)))
                 ->setCategory($this->getReference("category_" . mt_rand(1, $nbOfCategory)))
-                ->setCreatedAt($faker->dateTime)
+                ->setCreatedAt($faker->dateTimeThisDecade)
                 ->setPrice($faker->randomNumber(2));
 
             $this->addReference("ad_$i", $ad);

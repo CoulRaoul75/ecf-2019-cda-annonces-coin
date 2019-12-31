@@ -7,13 +7,17 @@ use App\Entity\Category;
 use App\Entity\Category as CategoryAlias;
 use App\Form\AdType;
 use App\Repository\AdRepository;
+use Doctrine\DBAL\Types\TextType;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use function Sodium\add;
 
 
 /**
@@ -50,6 +54,7 @@ class AdController extends AbstractController
 
     /**
      * @Route("/new", name="ad-new", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      * @param Request $request
      * @param CategoryAlias $categoryList
      * @return Response
@@ -179,4 +184,5 @@ class AdController extends AbstractController
 
         return $this->redirectToRoute('ad-list');
     }
+
 }

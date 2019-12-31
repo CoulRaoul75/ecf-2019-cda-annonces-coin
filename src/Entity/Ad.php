@@ -32,6 +32,12 @@ class Ad
      */
     private $category;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="ads")
+     * @var
+     */
+    private $user;
+
 
     /**
      * @ORM\Column(type="datetime")
@@ -126,4 +132,24 @@ class Ad
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     * @return Ad
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+
 }

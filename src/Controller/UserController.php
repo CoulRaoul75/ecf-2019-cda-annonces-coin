@@ -9,13 +9,29 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 
 /**
  * @Route("/user")
  */
-class UserController extends AbstractController implements UserInterface
+class UserController extends AbstractController
 {
+    /**
+     * @var UserPasswordEncoderInterface
+     */
+    private $encoder;
+
+    /**
+     * UserController constructor.
+     * @param UserPasswordEncoderInterface $encoder
+     */
+
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
+        $this->encoder = $encoder;
+    }
+
     /**
      * @Route("/", name="user-index", methods={"GET"})
      * @param UserRepository $userRepository
@@ -31,29 +47,25 @@ class UserController extends AbstractController implements UserInterface
     /**
      * @Route("/new", name="user-new", methods={"GET","POST"})
      * @param Request $request
-     * @param null $id
      * @return Response
      */
-    public function new(Request $request, $id=null)
+    public function new(Request $request)
     {
-        if($id==null) {
-            $user = new User();
-        } else {
-            $user = $this->getDoctrine()
-                ->getRepository(User::class)
-                ->find($id);
-        }
 
-            $form = $this->createForm(UserType::class, $user);
-
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $currentPwd = $user->getPassword();
+            $user->setPassword($this->encoder->encodePassword($user, $currentPwd));
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('user-index');
+            $this->addFlash('success', "Ton coin est créé ! Fais ton annonce");
+
+            return $this->redirectToRoute('security-login');
         }
 
         return $this->render('user/new.html.twig', [
@@ -107,68 +119,4 @@ class UserController extends AbstractController implements UserInterface
         return $this->redirectToRoute('user-index');
     }
 
-    /**
-     * Returns the roles granted to the user.
-     *
-     *     public function getRoles()
-     *     {
-     *         return ['ROLE_USER'];
-     *     }
-     *
-     * Alternatively, the roles might be stored on a ``roles`` property,
-     * and populated in any number of different ways when the user object
-     * is created.
-     *
-     * @return string[] The user roles
-     */
-    public function getRoles()
-    {
-        // TODO: Implement getRoles() method.
-    }
-
-    /**
-     * Returns the password used to authenticate the user.
-     *
-     * This should be the encoded password. On authentication, a plain-text
-     * password will be salted, encoded, and then compared to this value.
-     *
-     * @return string|null The encoded password if any
-     */
-    public function getPassword()
-    {
-        // TODO: Implement getPassword() method.
-    }
-
-    /**
-     * Returns the salt that was originally used to encode the password.
-     *
-     * This can return null if the password was not encoded using a salt.
-     *
-     * @return string|null The salt
-     */
-    public function getSalt()
-    {
-        // TODO: Implement getSalt() method.
-    }
-
-    /**
-     * Returns the username used to authenticate the user.
-     *
-     * @return string The username
-     */
-    public function getUsername()
-    {
-        // TODO: Implement getUsername() method.
-    }
-
-    /**
-     * Removes sensitive data from the user.
-     *
-     * This is important if, at any given point, sensitive information like
-     * the plain-text password is stored on this object.
-     */
-    public function eraseCredentials()
-    {
-        // TODO: Implement eraseCredentials() method.
-    }
 }
