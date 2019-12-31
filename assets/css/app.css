@@ -6,3 +6,9 @@ body {
 header {
     background-color: ivory;
 }
+
+#title {
+    font-weight: bold;
+    color: #0c5460;
+
+}

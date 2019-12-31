@@ -153,6 +153,8 @@ class AdController extends AbstractController
             }
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', "Ton annonce est modifiée !");
+
             return $this->redirectToRoute('ad-list');
         }
 

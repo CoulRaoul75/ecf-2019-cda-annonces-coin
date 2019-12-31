@@ -21,7 +21,7 @@ class AdType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, ['label' => 'Titre de ton annonce', 'help'=>'80 caractères max.'])
+            ->add('title', TextType::class, ['label' => 'Titre de ton annonce', 'help'=>'80 caractères max.'] )
             ->add('text', TextareaType::class, ['label' => 'Texte de ton annonce', 'help'=>'200 caractères max. De quoi faire une belle annonce.', 'attr' => ['rows'=>'4']])
             ->add('category', EntityType::class, ['label' => 'Catégorie', 'help'=>'Choisis ta catégorie dans le menu.' , 'class' => Category::class,
                 'choice_label' => 'titleCategory',
@@ -44,7 +44,7 @@ class AdType extends AbstractType
             ])
             ->add('price', TextType::class, ['label' => 'Prix', 'help' => 'Entre 0 € et 99 999 €'])
 
-            ->add('submit', SubmitType::class, ['label'=>'Publie ton annonce', 'attr' => ['class' => 'btn btn-danger']])
+            ->add('submit', SubmitType::class, ['label'=>'Publie ton annonce', 'attr' => ['class' => 'btn btn-block btn-danger']])
         ;
     }
 

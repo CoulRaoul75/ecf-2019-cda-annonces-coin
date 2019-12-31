@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des annonces{% endblock %}
+{% block title %}Bienvenue sur lecoincoin.fr{% endblock %}
 
 {% block body %}
 
-    <h1 class="p-2">Trouve ton bonheur parmi <span class="text-danger">{{ adList.getTotalItemCount() }} annonces déposées</span> !</h1>
+    <h1 class="p-2">Trouve ton bonheur parmi <span class="text-danger">{{ adList.getTotalItemCount() }} annonces </span> !</h1>
 
     <table class="table table-bordered table-striped">
 
@@ -20,7 +20,7 @@
 
         {% for ad in adList %}
             <tr>
-                <td>{{ ad.title }}</td>
+                <td>{{ ad.title }} </td>
                 <td>{{ ad.text | u.truncate(30) }} ... <a href="{{ path('ad-details', {"id":ad.id}) }}">consulter</a></td>
                 <td>{{ ad.category.titleCategory }}</td>
                 <td>{{ ad.createdAt ? ad.createdAt|date('d-M-Y') : '' }}</td>

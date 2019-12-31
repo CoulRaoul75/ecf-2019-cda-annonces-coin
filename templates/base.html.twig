@@ -1,41 +1,43 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Bienvenue sur le Coin Coin.fr{% endblock %}</title>
-        {% block stylesheets %} {{ encore_entry_link_tags('style') }} {% endblock %}
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Bienvenue sur lecoincoin.fr{% endblock %}</title>
+    {% block stylesheets %} {{ encore_entry_link_tags('style') }} {% endblock %}
+</head>
 
-    <body class="container-fluid">
+<body class="container-fluid">
 
-    <div>
-        <div class="row">
-            <div class="col-sm-3">
-                        <img alt="header" class="rounded float-left" src="/images/duck-header.png" width="224" height="154">
-            </div>
-            <div class="col-sm-6 mt-2">
-                        <h1 class="display-4">Le coin coin.fr</h1>
-                        <h2>Le coin des annonces gratuites</h2>
-            </div>
-            <div class="col-sm-3">
-            </div>
+<div>
+    <div class="row">
+        <div class="col-sm-3">
+            <img alt="header" class="rounded float-left" src="/images/duck-header.png" width="224" height="154">
+        </div>
+        <div class="col-sm-6 mt-2">
+            <h1 class="display-4">Lecoincoin.fr</h1>
+            <h2>Le coin des annonces gratuites</h2>
+        </div>
+        <div class="col-sm-3">
         </div>
     </div>
+</div>
 
-    <div>
-        {% include 'partial/_navbarre.html.twig' %}
-    </div>
+<div>
+    {% include 'partial/_navbarre.html.twig' %}
+</div>
 
-    {% block body %}
+{% block body %}
+{% endblock %}
 
+<div class="mt-3"></div>
+{% block footer %}
+    &copy; Copyright by <a href="https://github.com/CoulRaoul75">Vanessa SUMYUEN</a> - Décembre 2019.
+{% endblock %}
 
+{% block js %}
+    {{ encore_entry_script_tags('app') }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{% endblock %}
 
-    {% endblock %}
-
-        {% block js %}
-            {{ encore_entry_script_tags('app') }}
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        {% endblock %}
-
-    </body>
+</body>
 </html>
